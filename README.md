@@ -23,4 +23,12 @@ The two forms of `action` are very similar, in that they take the same four argu
 
 Obviously, the terminology is evocative of physical combat, but `Resolve` is designed to be sufficiently general to be used for any task.
 
+With these parameters, `action/4` returns the magnitude of effect.
+
+However, `action/5` takes a fifth parameter:
+
+ - __Outcomes__:  A _map_ with four elements, `none:`, `minor:`, `half`, and `full`.
+
+Based on the result that would otherwise be returned by `action/4`, `action/5` returns the appropriate element from `outcomes`.
+
 
