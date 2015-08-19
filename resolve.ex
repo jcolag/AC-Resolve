@@ -43,7 +43,7 @@ defmodule Resolve do
   end
 
   def damage(force, defend, critical \\ 0) do
-    if defend > force do
+    if defend > force + critical do
       0
     else
       force + critical - defend
