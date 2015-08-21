@@ -1,10 +1,10 @@
 defmodule Resolve do
 # NB: run :random.seed(:os.timestamp) before using
-  def one_die(sides \\ 10) do
+  defp one_die(sides \\ 10) do
     round(:random.uniform * sides + 0.5)
   end
 
-  def dice(recurse \\ -1) do
+  defp dice(recurse \\ -1) do
     left = one_die()
     right = one_die()
     doubles = 0
