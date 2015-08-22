@@ -1,16 +1,16 @@
 defmodule Game1 do
-  def parse_int(name) do
+  defp parse_int(name) do
     { i, _ } = :string.to_integer(to_char_list(name))
     i
   end
 
-  def update(profile, which, number) do
+  defp update(profile, which, number) do
     {value, _} = :string.to_integer(to_char_list(number))
     orig = parse_int(Dict.fetch!(profile, which))
     orig + parse_int(value)
   end
 
-  def sum(who, hand) do
+  defp sum(who, hand) do
     Enum.reduce hand, who, fn card, acc ->
       left_tag = Enum.fetch!(card, 1)
       right_tag = Enum.fetch!(card, 3)
@@ -21,35 +21,35 @@ defmodule Game1 do
     end
   end
 
-  def strike(attacker, defender) do
+  defp strike(attacker, defender) do
     Resolve.action(attacker["Aim"], attacker["Force"], defender["Evade"], defender["Defend"])
   end
 
-  def fight(first, _ = %{hp: hps}, _)
+  defp fight(first, _ = %{hp: hps}, _)
     when hps <= 0 do
     first.name
   end
 
-  def fight(first = %{"Aim": aim, "Force": force}, _, _)
+  defp fight(first = %{"Aim": aim, "Force": force}, _, _)
     when aim <= 0 or force <= 0 do
     first.name
   end
 
-  def fight(_, _, 0) do
+  defp fight(_, _, 0) do
     "Draw"
   end
 
-  def fight(first, second = %{hp: hps}, rounds) do
+  defp fight(first, second = %{hp: hps}, rounds) do
     hps = hps - strike(first, second)
     second = Map.put(second, :hp, hps)
     fight(second, first, rounds - 1)
   end
 
-  def deal(_, []) do
+  defp deal(_, []) do
     []
   end
 
-  def deal(empty, [head|tail]) do
+  defp deal(empty, [head|tail]) do
     [first, second] = head
     fchar = sum(empty, first)
     fchar = Map.put_new(fchar, :hp, fchar["Defend"])
