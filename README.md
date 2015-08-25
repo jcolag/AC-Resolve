@@ -31,4 +31,13 @@ However, `action/5` takes a fifth parameter:
 
 Based on the result that would otherwise be returned by `action/4`, `action/5` returns the appropriate element from `outcomes`.
 
+## Example
+
+To see how `Resolve` might be used in action, `game1.ex` uses the resolution mechanism along with the generated card data snagged from my earlier [AttaCard Generator](https://github.com/jcolag/AttaCard-Generator) project to simulate a two-player card game where no skill is involved.
+
+In the game, each player is dealt a hand of cards.  The values of the cards are tallied to create a "character," and those characters attack each other until one's "health" is reduced to zero or the number of turns expires.
+
+The result of calling `Game1.go()` is a list of names representing which player won or if the fight was a draw.  `Game1.go()` can also be called with parameters to replace the card file (though the format is fixed, because this is _just an example_) and change the hand size.
+
+This _might_ serve as a useful basis for anybody who wants to go further.  Or it might serve to illustrate that I'm a terrible Elixir programmer.  But it does work, either way.
 
